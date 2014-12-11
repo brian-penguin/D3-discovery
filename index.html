@@ -13,16 +13,18 @@
         border-bottom: 1px solid white;
       }
     </style>
+<!--     <div class='bar'> </div>
     <div class='bar'> </div>
-    <div class='bar'> </div>
-    <div class='bar'> </div>
+    <div class='bar'> </div> -->
 
     <script>
       var data = [10,30,60];
-      d3.selectAll('.bar').data(data)
-        .style('width', function(d){
-          return d + '%';
-        });
+      d3.select('body').selectAll('.bar').data(data)
+      // we use the enter method when we aren't sure how many bars we are going to
+      // have in the dom
+        .enter().append('div')
+          .style('width', function(d){return d + '%';})
+          .attr('class','bar');
     </script>
   </body>
 </html>
