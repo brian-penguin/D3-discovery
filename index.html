@@ -18,7 +18,7 @@
     <div class='bar'> </div> -->
 
     <script>
-      var data = [10,30,60];
+      var data = d3.range(100);
       d3.select('body').selectAll('.bar').data(data)
       // we use the enter method when we aren't sure how many bars we are going to
       // have in the dom
