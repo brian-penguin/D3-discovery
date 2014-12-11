@@ -6,11 +6,12 @@
     <script src="http://d3js.org/d3.v3.min.js" type="text/javascript" charset="utf-8" ></script>
   </head>
   <body>
-    <div>
-    Hello!
-    </div>
+    <div> Hello! </div>
+    <div> World </div>
+    <div> ! </div>
+
     <script>
-      d3.select('body').append('h1').text('Hello World!');
+      d3.selectAll('div').style('background-color', 'blue');
     </script>
   </body>
 </html>
