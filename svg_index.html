@@ -4,22 +4,36 @@
     <title>SVG</title>
   </head>
   <style>
-
+    body{ margin: 0; }
+      path { stroke: white; stroke-width: 2px;}
   </style>
   <body>
-    <svg height="1000" width="1000">
-    <!-- We can use line cap and dash array to change how our line comes out -->
-      <line x1="20" y1= "20"
-            x2="200" y2="200"
-            stroke="blue"
-            stroke-linecap="round"
-            stroke-dasharray="4,30"
-            stroke-width="20">
-      </line>
-    </svg>
+
+
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script>
+      // the arc generator
+      var arc = d3.svg.arc()
+        .innerRadius(125)
+        .outerRadius(150);
+
+      var data = [21, 32, 35, 64, 83];
+
+      var color = d3.scale.category10();
+
+      var pie = d3.layout.pie();
+      var arcData = pie(data);
+
+      d3.select('body').append('svg').attr({
+        height: 1000,
+        width: '1000'})
+        .append('g').attr('transform', 'translate(200, 175)')
+          .selectAll('path').data(arcData).enter()
+            .append('path').attr('d', arc)
+            .style('fill', function(d, i){
+              return color(i);
+            });
 
     </script>
   </body>
