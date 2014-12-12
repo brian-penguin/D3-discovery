@@ -4,15 +4,27 @@
     <title>SVG</title>
   </head>
   <style>
-
+    svg path {
+      stroke: red;
+      stroke-width: 30px;
+      fill: white;
+    }
+    svg text{
+      font-size:30px;
+      font-family: sans-serif;
+      fill:red;  /* Not 'color' or 'font-color' */
+    }
   </style>
   <body>
-    <svg>
-      <path d="M 100 50 L 300 50 L 200 150 z"/>
+    <svg height="1000" width="1000">
+      <path d="M 30 20 L 140 200 L 240 20 z"/>
       <!-- Move to position x=100 y =50  -->
       <!-- Draw a line from last pos to x=300 y=50 -->
       <!-- Draw another line from last pos to x=200 y=150 -->
       <!-- Z means treaturn to the drawing line -->
+      <text x="95" y="80">
+        YIELD
+      </text>
     </svg>
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
