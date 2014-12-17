@@ -12,19 +12,28 @@
 <script type="text/javascript">
   var commits = [];
 
+  // Get All the commits !
   $.ajax({
-    url: 'http://brian-tracker.herokuapp.com/git_commits'
+    url: 'http://localhost:3000/10_day_freq'
   })
   .done(function(data) {
     console.log("success");
     commits = data;
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
   });
+
+  // I need a big hash of x and y values
+  // -> x = the date range (day/ month/ year/ whatever )
+  // -> y = the number of commits made in that range
+
+  // This seems like I want to make a specific endpoint for this...
+  // but for now we are just gonna roll with it.
+
+  // Assume the date range is by day
+
+  setTimeout(function() {
+
+  },1000);
+
 
 </script>
 </body>
