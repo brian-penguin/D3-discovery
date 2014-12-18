@@ -5,6 +5,7 @@
 </head>
 <body>
   <h1> Commits Frequency of the last ten day </h1>
+  <div class="bars"></div>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -25,45 +26,39 @@
   setTimeout(function() {
     var data = commit_freq;
 
-    // var data = [{year: 2006, commits: 54},
-    //             {year: 2007, commits: 43},
-    //             {year: 2008, commits: 41},
-    //             {year: 2009, commits: 44},
-    //             {year: 2010, commits: 35}];
-
     var barWidth = 60;
-    var width = (barWidth + 10) * data.length;
-    var height = 350;
+    var width = (barWidth + 5) * data.length;
+    var height = 500;
 
     var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
     var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.commits; })]).
-      rangeRound([0, height]);
+      rangeRound([0, (height)]);
 
     // add the canvas to the DOM
-    var bars = d3.select("body").
+    var bars = d3.select(".bars").
       append("svg:svg").
       attr("width", width).
-      attr("height", height);
+      attr("height", height + 100);
 
     bars.selectAll("rect").
       data(data).
       enter().
       append("svg:rect").
       attr("x", function(datum, index) { return x(index); }).
-      attr("y", function(datum) { return height - y(datum.commits); }).
+      attr("y", function(datum) { return (height) - y(datum.commits); }).
       attr("height", function(datum) { return y(datum.commits); }).
       attr("width", barWidth).
-      attr("fill", "#2d578b");
+      attr("fill", "tomato");
 
     bars.selectAll("text").
       data(data).
-      enter().
-      append("svg:text").
+      enter().append("svg:text").
       attr("x", function(datum, index) { return x(index) + barWidth; }).
-      attr("y", function(datum) { return height - y(datum.commits); }).
+      attr("y", function(datum) { return (height) - y(datum.commits); }).
       attr("dx", -barWidth/2).
       attr("dy", "1.2em").
       attr("text-anchor", "middle").
+       attr("style", "font-size: 20; font-family: Helvetica, sans-serif;").
       text(function(datum) { return datum.commits;}).
       attr("fill", "white");
 
@@ -75,8 +70,8 @@
       attr("dx", -barWidth/2).
       attr("text-anchor", "middle").
       attr("style", "font-size: 12; font-family: Helvetica, sans-serif; color: black;").
-      text(function(datum) { return datum.date;}).
-      attr("transform", "translate(0, 18)").
+      text(function(datum) {return datum.date;}).
+      attr("transform", "translate(0, 10)").
       attr("class", "yAxis");
 
   }, 500);
